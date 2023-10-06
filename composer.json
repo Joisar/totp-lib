@@ -1,0 +1,26 @@
+{
+    "name": "vendor/portal",
+    "description": "Vendor Portal TOTP",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Vendor\\Portal\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "vendor\\Portal\\PortalServiceProviders"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "webdev1",
+            "email": "webdev1@digicians.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}

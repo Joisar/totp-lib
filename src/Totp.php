@@ -3,20 +3,20 @@
 namespace Vendor\Portal;
 
 use Illuminate\Support\Facades\Config;
-use Vendor\Portal\Strategies\StrategyInterface;
+use Vendor\Portal\Strategies\HmacStrategy;
 
 class Totp
 {
-    private $strategy;
-
-    public function __construct(StrategyInterface $strategy)
+    public static function currentStrategy()
     {
-        $this->strategy = $strategy;
+        $strategy = new HmacStrategy();
+        return $strategy;
     }
 
-    public function loginViaOtp($email, $otp): bool
+    public static function loginViaOtp($email, $otp): bool
     {
-        $totp = $this->strategy->totp($email);
+        $strategy = self::currentStrategy();
+        $totp = $strategy->totp($email);
         $status = false;
         if ($totp == $otp) {
             $status = true;

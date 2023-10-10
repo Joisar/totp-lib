@@ -13,9 +13,6 @@ class PortalServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->publishes([
-            __DIR__ . '/config/totp.php.php' => config_path('totp.php'),
-        ], 'config');
     }
 
     /**
@@ -25,7 +22,5 @@ class PortalServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $configPath = __DIR__ . '/config/totp.php';
-        $this->mergeConfigFrom($configPath, 'totp');
     }
 }

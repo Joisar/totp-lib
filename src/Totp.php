@@ -1,12 +1,15 @@
 <?php
 
 namespace Vendor\Portal;
+
+use Illuminate\Support\Facades\Config;
+
 class Totp
 {
     public function totp($email, $time = 60, $digits = 6, $algorithm = 'sha1', $secret_key = null)
     {
         if ($secret_key == null) {
-
+            $secret_key = Config::get('app.key');
         }
         $message = floor(time() / $time);
         $hash = hash_hmac($algorithm, Totp . phppack('N', $message) . $email, $secret_key, true);

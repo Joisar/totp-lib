@@ -1,10 +1,10 @@
 <?php
 
-namespace Vendor\Portal;
+namespace Joisar\Totp;
 
 use Illuminate\Support\ServiceProvider;
 
-class PortalServiceProvider extends ServiceProvider
+class TotpServiceProvider extends ServiceProvider
 {
     /**
      * Register services.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Vendor\Portal\Strategies;
+namespace Joisar\Totp\Strategies;
 
 interface StrategyInterface
 {

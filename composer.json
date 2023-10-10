@@ -1,17 +1,17 @@
 {
-    "name": "vendor/portal",
-    "description": "Vendor Portal TOTP",
+    "name": "joisar/totp-lib",
+    "description": "TOTP Generate and match library",
     "type": "project",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Vendor\\Portal\\": "src/"
+            "Joisar\\Totp\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Vendor\\Portal\\PortalServiceProvider"
+                "Joisar\\Totp\\TotpServiceProvider"
             ]
         }
     },

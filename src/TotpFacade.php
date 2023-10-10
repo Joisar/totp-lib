@@ -1,10 +1,10 @@
 <?php
 
-namespace Vendor\Portal;
+namespace Joisar\Totp;
 
 use Illuminate\Support\Facades\Facade;
 
-class PortalFacade extends Facade
+class TotpFacade extends Facade
 {
     /**
      * @return string

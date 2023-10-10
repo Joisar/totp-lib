@@ -18,7 +18,15 @@ class Totp
         $truncatedHash = $truncatedHash & "\x7F\xFF\xFF\xFF";
         $code = unpack('N', $truncatedHash)[1] % 1000000;
         return str_pad($code, $digits, '0', STR_PAD_LEFT);
-
     }
 
+    public function loginViaOtp($email, $otp)
+    {
+        $totp = $this->totp($email);
+        $status = false;
+        if ($totp == $otp) {
+            $status = true;
+        }
+        return $status;
+    }
 }

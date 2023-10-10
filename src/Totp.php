@@ -2,8 +2,7 @@
 
 namespace Joisar\Totp;
 
-use Illuminate\Support\Facades\Config;
-use Vendor\Portal\Strategies\HmacStrategy;
+use Joisar\Totp\Strategies\HmacStrategy;
 
 class Totp
 {

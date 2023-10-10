@@ -3,26 +3,20 @@
 namespace Vendor\Portal;
 
 use Illuminate\Support\Facades\Config;
+use Vendor\Portal\Strategies\StrategyInterface;
 
 class Totp
 {
-    public function totp($email, $time = 60, $digits = 6, $algorithm = 'sha1', $secret_key = null)
+    private $strategy;
+
+    public function __construct(StrategyInterface $strategy)
     {
-        if ($secret_key == null) {
-            $secret_key = Config::get('app.key');
-        }
-        $message = floor(time() / $time);
-        $hash = hash_hmac($algorithm, pack('N', $message) . $email, $secret_key, true);
-        $offset = ord(substr($hash, -1)) & 0x0F;
-        $truncatedHash = substr($hash, $offset, 4);
-        $truncatedHash = $truncatedHash & "\x7F\xFF\xFF\xFF";
-        $code = unpack('N', $truncatedHash)[1] % 1000000;
-        return str_pad($code, $digits, '0', STR_PAD_LEFT);
+        $this->strategy = $strategy;
     }
 
-    public function loginViaOtp($email, $otp)
+    public function loginViaOtp($email, $otp): bool
     {
-        $totp = $this->totp($email);
+        $totp = $this->strategy->totp($email);
         $status = false;
         if ($totp == $otp) {
             $status = true;
